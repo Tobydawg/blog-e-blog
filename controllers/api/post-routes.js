@@ -1,10 +1,11 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
-const { Post, User, Comment, Vote } = require('../../models');
+const { Post, User, Comment } = require('../../models');
+const withAuth = require("../../utils/auth");
 
 
 router.post('/', withAuth, (req, res) => {
-  // {title: 'Taskmaster goes public!', post_url: 'https://taskmaster.com/press', user_id: 1}
+  
   Post.create({
     title: req.body.title,
     post_text: req.body.post_text,
@@ -17,7 +18,22 @@ router.post('/', withAuth, (req, res) => {
     });
 });
 
+module.exports = router;
 
+// const router = require("express").Router();
+// const { Comment } = require("../../models/");
+// const withAuth = require("../../utils/auth");
+
+// router.post("/", withAuth, (req, res) => {
+//   Comment.create({ ...req.body, userId: req.session.userId })
+//     .then(newComment => {
+//       res.json(newComment);
+//     })
+//     .catch(err => {
+//       res.status(500).json(err);
+//     });
+// });
+module.exports = router;
 
 
 
