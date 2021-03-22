@@ -5,14 +5,15 @@ class Post extends Model {}
 // create fields/columns for Post model
 Post.init(
   {
-    id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true
-    },
+    // id: {
+    //     type: DataTypes.INTEGER,
+    //     allowNull: false,
+    //     primaryKey: true,
+    //     autoIncrement: true
+    
       title: DataTypes.STRING,
       body: DataTypes.STRING,
+      
       
   },
   {
@@ -63,7 +64,7 @@ module.exports = Post;
 //         },
 //         attributes: [
 //           'id',
-//           'post_url',
+//           'body',
 //           'title',
 //           'created_at',
 //           [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
@@ -71,7 +72,7 @@ module.exports = Post;
 //         include: [
 //           {
 //             model: models.Comment,
-//             attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+//             attributes: ['id', 'body', 'post_id', 'user_id', 'created_at'],
 //             include: {
 //               model: models.User,
 //               attributes: ['username']
@@ -96,7 +97,7 @@ module.exports = Post;
 //       type: DataTypes.STRING,
 //       allowNull: false
 //     },
-//     post_url: {
+//     body: {
 //       type: DataTypes.STRING,
 //       allowNull: false,
 //       validate: {

@@ -4,39 +4,12 @@ const { Post, User, Comment } = require('../models');
 
 
 
-router.get('/login', (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect('/');
-    return;
-  }
-
-  res.render('login');
-});
-
-module.exports = router;
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//find all posts and display 
+//want 
 
 
 
@@ -46,15 +19,15 @@ router.get('/', (req, res) => {
   Post.findAll({
     attributes: [
       'id',
-      'post_url',
+      'body',
       'title',
-      'created_at',
+      
     //   [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
     ],
     include: [
       {
         model: Comment,
-        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+        attributes: ['id', 'body', 'post_id', 'user_id'],
         include: {
           model: User,
           attributes: ['username']
@@ -96,15 +69,15 @@ router.get('/post/:id', (req, res) => {
     },
     attributes: [
       'id',
-      'post_url',
+      'body',
       'title',
-      'created_at',
+      
     //   [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
     ],
     include: [
       {
         model: Comment,
-        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+        attributes: ['id', 'body', 'post_id', 'user_id',],
         include: {
           model: User,
           attributes: ['username']
@@ -135,4 +108,15 @@ router.get('/post/:id', (req, res) => {
     });
 });
 
+
+router.get('/login', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+
+  res.render('login');
+});
+
+module.exports = router;
 
