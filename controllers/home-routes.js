@@ -2,64 +2,19 @@ const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { Post, User, Comment } = require('../models');
 
-
-
-
-
-
-
-//find all posts and display 
-//want 
-
-
-
 // get all posts for homepage
-router.get('/', (req, res) => {
-  console.log('======================');
-  Post.findAll({
-    attributes: [
-      'id',
-      'body',
-      'title',
-      
-    //   [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
-    ],
-    include: [
-      {
-        model: Comment,
-        attributes: ['id', 'body', 'post_id', 'user_id'],
-        include: {
-          model: User,
-          attributes: ['username']
-        }
-      },
-      {
-        model: User,
-        attributes: ['username']
-      }
-    ]
-  })
-    .then(dbPostData => {
-      const posts = dbPostData.map(post => post.get({ plain: true }));
-
-      res.render('homepage', {
-        posts,
-        loggedIn: req.session.loggedIn
-      });
+router.get("/", (req, res) => {
+    Post.findAll({
+      include: [User],
     })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
-
-
-
-
-
-
-
-
+      .then((dbPostData) => {
+        const posts = dbPostData.map((post) => post.get({ plain: true }));
+        res.render("all-post", { posts });
+      })
+      .catch((err) => {
+        res.status(500).json(err);
+      });
+  });
 
 // get single post
 router.get('/post/:id', (req, res) => {
@@ -70,14 +25,13 @@ router.get('/post/:id', (req, res) => {
     attributes: [
       'id',
       'body',
-      'title',
-      
-    //   [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+      'createdAt',
+      'title'
     ],
     include: [
       {
         model: Comment,
-        attributes: ['id', 'body', 'post_id', 'user_id',],
+        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'createdAt'],
         include: {
           model: User,
           attributes: ['username']
@@ -108,15 +62,23 @@ router.get('/post/:id', (req, res) => {
     });
 });
 
-
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect('/');
+    res.redirect('/dashboard');
     return;
   }
 
   res.render('login');
 });
 
-module.exports = router;
+router.get('/signup', (req, res) => {
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
+  
+    res.render('sign-up');
+  });
 
+ 
+module.exports = router;
