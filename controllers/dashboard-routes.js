@@ -31,12 +31,13 @@ router.get('/', withAuth, (req, res) => {
   })
     .then(dbPostData => {
       const posts = dbPostData.map(post => post.get({ plain: true }));
+      console.log(posts)
       res.render('all-post', {layout:"dashboard", posts });
     })
     .catch(err => {
       console.log(err);
     //   res.status(500).json(err);
-      res.redirect('login');
+      res.redirect('dashboard');
     });
 });
 
