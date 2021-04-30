@@ -2,7 +2,14 @@ const router = require('express').Router();
 const { User, Post, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-
+router.get('/all', (req, res) => {
+  User.findAll()
+    .then(dbUserData => res.json(dbUserData))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
 router.post('/signup', (req, res) => {
   // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
@@ -62,7 +69,7 @@ router.post('/logout', (req, res) => {
     });
   }
   else {
-    res.status(404).end();
+    res.status(404).json({message: 'you are logged out!'});
   }
 });
 
