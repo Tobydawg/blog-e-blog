@@ -16,6 +16,7 @@ async function newFormHandler(event) {
     });
     if (response.ok) {
       document.location.replace('/dashboard');
+      alert("Thank you for Posting!");
     } else {
       alert(response.statusText);
     }

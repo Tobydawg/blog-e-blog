@@ -6,6 +6,7 @@ function logout() {
     })
     .then(function(){
         document.location.replace('/');
+        alert("Goodbye")
     })
     .catch(err => {
         console.log(err);

@@ -16,6 +16,7 @@ async function loginFormHandler(event) {
   
       if (response.ok) {
         document.location.replace('/dashboard');
+        alert("You are now logged in.")
       } else {
         alert(response.statusText);
       }
@@ -24,7 +25,7 @@ async function loginFormHandler(event) {
   
    document.querySelector('.login-form').addEventListener('submit', loginFormHandler);
 
-   
+
 //   async function signupFormHandler(event) {
 //     event.preventDefault();
   

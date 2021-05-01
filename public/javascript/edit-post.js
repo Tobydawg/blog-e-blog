@@ -17,6 +17,7 @@ async function editFormHandler(event) {
   
     if (response.ok) {
       document.location.replace('/dashboard/');
+      alert("you're post has been edited")
     } else {
       alert("that didn't work, try again. ");
     }

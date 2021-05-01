@@ -5,12 +5,36 @@ class Comment extends Model {}
 
 
 Comment.init(
-    {
-      body: {
-        type: DataTypes.STRING,
-        allowNull: false
-      }
-    },
+   
+
+        {
+
+          comments: {
+            type: DataTypes.STRING,
+            allowNull: false
+          },
+          post_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            primaryKey: true,
+            autoIncrement: true
+          },
+          user_id: {
+            type: DataTypes.STRING,
+            allowNull: false
+          },
+          
+            
+          
+        },
+
+
+
+      
+    
+
+    
+
     {
       sequelize
     }
