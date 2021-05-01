@@ -7,31 +7,16 @@ class Post extends Model {}
 // create fields/columns for Post model
 Post.init(
   {
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    post_url: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isURL: true
-      }
-    },
-    user_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'user',
-        key: 'id'
-      }
-    }
+    title: DataTypes.STRING,
+    body: DataTypes.STRING
   },
+  {
+  user_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  }
+  },
+  
   {
     sequelize,
     freezeTableName: true,

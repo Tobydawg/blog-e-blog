@@ -29,7 +29,9 @@ router.get('/', (req, res) => {
       }
     ]
   })
-    .then(dbPostData => res.json(dbPostData))
+    .then(dbPostData =>
+      console.log(dbPostData)
+      )
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
@@ -44,13 +46,13 @@ router.get('/:id', (req, res) => {
     attributes: [
       'id',
       'title',
-      'body',
+       'body',
       'createdAt'
     ],
     include: [
       {
         model: Comment,
-        attributes: ['id', 'post_id', 'createdAt'],
+        attributes: ['id', 'body', 'post_id', 'createdAt'],
         include: {
           model: User,
           attributes: ['username']
@@ -80,10 +82,9 @@ router.get('/:id', (req, res) => {
 
 
 router.post('/', withAuth, (req, res) => {
-  // expects {title: 'Taskmaster goes public!', post_url: 'https://taskmaster.com/press', user_id: 1}
+  // expects {title: 'Taskmaster goes public: 'https://taskmaster.com/press', user_id: 1}
   Post.create({
     title: req.body.title,
-    body: req.body.body,
     user_id: req.session.user_id
   })
     .then(dbPostData => res.json(dbPostData))
@@ -96,10 +97,7 @@ router.post('/', withAuth, (req, res) => {
 
 
 router.put('/edit/:id', withAuth, (req, res) => {
-  Post.update(
-    {
-      title: req.body.title
-    },
+  Post.update(req.body,
     {
       where: {
         id: req.params.id
@@ -107,11 +105,17 @@ router.put('/edit/:id', withAuth, (req, res) => {
     }
   )
     .then(dbPostData => {
-      if (!dbPostData) {
-        res.status(404).json({ message: 'No post found with this id' });
-        return;
+      if(dbPostData > 0){
+        req.status(200).end();
+      } else {
+        res.status(404).end();
       }
-      res.json(dbPostData);
+     
+      // if (!dbPostData) {
+      //   res.status(404).json({ message: 'No post found with this id' });
+      //   return;
+      // }
+     // res.json(dbPostData);
     })
     .catch(err => {
       console.log(err);

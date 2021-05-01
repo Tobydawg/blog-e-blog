@@ -20,7 +20,7 @@ router.get('/', withAuth, (req, res) => {
     include: [
       {
         model: Comment,
-        attributes: ['id', 'body', 'post_id', 'user_id', 'createdAt'],
+        attributes: ['id', 'post_id', 'user_id', 'createdAt'],
         
       },
       {
@@ -81,7 +81,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
     });
 });
 
-router.get("/new", withAuth, (req, res) => {
+router.get("/", withAuth, (req, res) => {
     res.render("new-post", {
       layout: "dashboard"
     });
