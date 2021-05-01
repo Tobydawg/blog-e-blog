@@ -11,7 +11,7 @@ async function deleteFormHandler(event) {
     if (response.ok) {
       document.location.replace('/dashboard/');
     } else {
-      alert(response.statusText);
+      alert("Your post has been deleted. Thank you!");
     }
   }
   
