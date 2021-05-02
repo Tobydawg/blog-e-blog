@@ -18,9 +18,13 @@ router.get('/all', (req, res) => {
       comments: req.body.comment_text,
       // comment: req.body.comment,
       user_id: req.session.user_id,
-      post_id: req.body.post_id
+      post_id: req.body.post_id,
+      title: req.body.title
     })
-      .then(dbCommentData => res.json(dbCommentData))
+      .then(dbCommentData => {
+        console.log(dbCommentData)
+      return res.json(dbCommentData)
+      })
       .catch(err => {
         console.log(err);
         res.status(400).json(err);

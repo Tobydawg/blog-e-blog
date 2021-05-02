@@ -1,9 +1,28 @@
+    
+    
     <nav>
-        <div class="nav-wrapper background-color white-text brown darken-4">
-            <a href="#" class="brand-logo center font-size large">Blog -E - Blog</a>
+      <body class="card-panel black-2">
+    <nav>
+        <div class="nav-wrapper background-color white-text black-4">
+            <a href="#" class="brand-logo center font-size large">Blog E-blog</a>
         <ul>
             <li> <a href="/">Home</a> </li>
             <li> <a href="/dashboard"> Dashboard</a></li>
+            {{!-- <li> <a href="/login"> Login</a></li>
+            <li> <a href="/signup"> Signup</a></li>
+            <li> <a href="#" id="logout"> Logout</a></li> --}}
+            
+        </ul>
+
+       
+        </div>
+    </nav>
+
+        {{!-- <div class="nav-wrapper background-color white-text brown darken-4">
+            <a href="#" class="brand-logo center font-size large">Blog -E - Blog</a>
+        <ul>
+            <li> <a href="/">Home</a> </li>
+            <li> <a href="/dashboard"> Dashboard</a></li> --}}
             {{!-- <li> <a href="/login"> Login</a></li>
             <li> <a href="/signup"> Signup</a></li> --}}
             {{!-- <li> <a href="#" id="logout"> Logout</a></li> --}}
@@ -36,7 +55,7 @@
     {{#each posts as |post|}}
     <li>
       {{> post-info post}}
-      <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
+      <a href="/dashboard/edit/{{post.id}}" class="edit-link">Comment</a>
     </li>
     {{/each}}
   </ol>
@@ -51,8 +70,8 @@
 
 
 
-{{!-- <!DOCTYPE html>
-<html lang="en">
+ <!DOCTYPE html>
+ <html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -61,7 +80,7 @@
     <title>Blog E-Blog<title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet"  href="/stylesheets/style.css">
-    </head>
+    </head> 
 
 <body class="card-panel green lighten-2">
     <nav class="white-text brown darken-4">

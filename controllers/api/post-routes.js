@@ -69,6 +69,7 @@ router.get('/:id', (req, res) => {
         res.status(404).json({ message: 'No post found with this id' });
         return;
       }
+      console.log(dbPostData)
       res.json(dbPostData);
     })
     .catch(err => {
@@ -85,7 +86,8 @@ router.post('/', withAuth, (req, res) => {
   // expects {title: 'Taskmaster goes public: 'https://taskmaster.com/press', user_id: 1}
   Post.create({
     title: req.body.title,
-    user_id: req.session.user_id
+    user_id: req.session.user_id,
+    //body: req.body.body
   })
     .then(dbPostData => res.json(dbPostData))
     .catch(err => {
