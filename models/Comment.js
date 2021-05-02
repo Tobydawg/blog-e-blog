@@ -8,6 +8,11 @@ Comment.init(
     title: DataTypes.STRING,
     body: DataTypes.STRING,
 
+  // comment: {
+  //     type: DataTypes.STRING,
+  //     allowNull: false,
+  //   },
+
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
