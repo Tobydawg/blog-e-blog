@@ -111,11 +111,11 @@ router.put('/edit/:id', withAuth, (req, res) => {
         res.status(404).end();
       }
      
-      // if (!dbPostData) {
-      //   res.status(404).json({ message: 'No post found with this id' });
-      //   return;
-      // }
-     // res.json(dbPostData);
+      if (!dbPostData) {
+        res.status(404).json({ message: 'No post found with this id' });
+        return;
+      }
+     res.json(dbPostData);
     })
     .catch(err => {
       console.log(err);
