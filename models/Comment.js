@@ -12,10 +12,10 @@ Comment.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    comment: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+    // comment: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    // },
 
     user_id: {
       type: DataTypes.INTEGER,

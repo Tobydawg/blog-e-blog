@@ -15,7 +15,8 @@ router.get('/all', (req, res) => {
     console.log(req.body);
     Comment.create({
       // title: req.body.title,
-      comments: req.body.comments,
+      comments: req.body.comment_text,
+      // comment: req.body.comment,
       user_id: req.session.user_id,
       post_id: req.body.post_id
     })
