@@ -83,8 +83,9 @@ router.get('/edit/:id', withAuth, (req, res) => {
     });
 });
 
-router.get("/", withAuth, (req, res) => {
-    res.render("new-post", {
+router.get("/new", withAuth, (req, res) => {
+  console.log("=================== are you the one we are looking for? ===============")
+    res.render("edit-post", {
       layout: "dashboard"
     });
   });

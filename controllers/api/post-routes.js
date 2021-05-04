@@ -5,7 +5,7 @@ const withAuth = require("../../utils/auth");
 
 // get all posts
 router.get("/all", (req, res) => {
-  console.log("======================line 8");
+  console.log("==========post routes============line 8");
   Post.findAll({
     order: [["createdAt", "DESC"]],
     attributes: ["id", "body", "title", "createdAt"],
@@ -32,7 +32,7 @@ router.get("/all", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  console.log("=================line35")
+  console.log("======== post find one by id ========line35")
   Post.findOne({
     where: {
       id: req.params.id,
@@ -70,12 +70,12 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", withAuth, (req, res) => {
-  console.log("===============================line72 post routes")
+  console.log("============ create post ===================line72 post routes")
   Post.create({
     title: req.body.title,
     user_id: req.session.user_id,
     post_url: req.body.post_url,
-    //body: req.body.body
+    body: req.body.body
   })
     .then((dbPostData) => res.json(dbPostData))
     .catch((err) => {
@@ -85,7 +85,7 @@ router.post("/", withAuth, (req, res) => {
 });
 
 router.put("/edit/:id", withAuth, (req, res) => {
-  console.log("=======================================is this the route on line 87")
+  console.log("===========edit post by id=====================is this the route on line 87")
   Post.update(req.body, {
     where: {
       id: req.params.id,
