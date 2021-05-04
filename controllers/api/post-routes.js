@@ -5,7 +5,7 @@ const withAuth = require("../../utils/auth");
 
 // get all posts
 router.get("/all", (req, res) => {
-  console.log("======================");
+  console.log("======================line 8");
   Post.findAll({
     order: [["createdAt", "DESC"]],
     attributes: ["id", "body", "title", "createdAt"],
@@ -32,6 +32,7 @@ router.get("/all", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
+  console.log("=================line35")
   Post.findOne({
     where: {
       id: req.params.id,
@@ -53,7 +54,7 @@ router.get("/:id", (req, res) => {
     ],
   })
     .then((dbPostData) => {
-      console.log("Got this far");
+      console.log("Got ===========================this far");
       if (!dbPostData) {
         console.log("I'm failing to find one post....");
         res.status(404).json({ message: "No post found with this id" });
@@ -69,10 +70,11 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", withAuth, (req, res) => {
-  // expects {title: 'Taskmaster goes public: 'https://taskmaster.com/press', user_id: 1}
+  console.log("===============================line72 post routes")
   Post.create({
     title: req.body.title,
     user_id: req.session.user_id,
+    post_url: req.body.post_url,
     //body: req.body.body
   })
     .then((dbPostData) => res.json(dbPostData))
@@ -83,6 +85,7 @@ router.post("/", withAuth, (req, res) => {
 });
 
 router.put("/edit/:id", withAuth, (req, res) => {
+  console.log("=======================================is this the route on line 87")
   Post.update(req.body, {
     where: {
       id: req.params.id,
