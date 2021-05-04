@@ -3,9 +3,10 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const router = require('./controllers/');
+const logger = require("morgan");
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 
 const sequelize = require("./config/connection");
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -21,6 +22,8 @@ const sess = {
 };
 
 app.use(session(sess));
+
+app.use(logger('dev'));
 
 const helpers = require('./utils/helpers');
 

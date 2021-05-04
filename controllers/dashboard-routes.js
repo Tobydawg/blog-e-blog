@@ -52,7 +52,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
     include: [
       {
         model: Comment,
-        attributes: ['id', 'comments', 'post_id', 'user_id', 'createdAt'],
+        attributes: ['id', 'body', 'post_id', 'user_id', 'createdAt'],
         include: {
           model: User,
           attributes: ['username']
@@ -86,6 +86,30 @@ router.get("/", withAuth, (req, res) => {
       layout: "dashboard"
     });
   });
+
+router.get('post/:id', (req, res) => {
+  console.log('line 91');
+  Post.findByPk(req.params.id, {
+    include: [
+      User,
+      {
+        model: Comment,
+        include: [User],
+      },
+    ],
+  })
+  .then(post=>{
+    console.log('line 94')
+    console.log(post)
+    if (post)
+    {
+      res.render("single-post", {
+        post,
+        loggedIn: true
+      })
+    }
+  })
+})
 
 module.exports = router;
 

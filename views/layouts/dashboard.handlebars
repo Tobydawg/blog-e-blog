@@ -1,4 +1,4 @@
-    
+{{!--     
     
     <nav>
       <body class="card-panel black-2">
@@ -37,13 +37,13 @@
 
   <form class="new-post-form">
     <div>
-      <label for="post-title">Title</label>
+      <label for="post-title">Your Post</label>
       <input type="text" id="post-title" name="post-title" />
     </div>
-    <div>
+    {{!-- <div>
       <label for="post-url">Link</label>
       <input id="post-url" name="post-url" />
-    </div>
+    </div> --}}
     <button type="submit" class="btn">Create</button>
   </form>
 </section>
@@ -55,7 +55,7 @@
     {{#each posts as |post|}}
     <li>
       {{> post-info post}}
-      <a href="/dashboard/edit/{{post.id}}" class="edit-link">Comment</a>
+      <a href="/post/{{post.id}}" class="edit-link">View Post</a>
     </li>
     {{/each}}
   </ol>
@@ -64,8 +64,7 @@
 
 <script src="/javascript/add-post.js"></script>
 <script src="/javascript/comment.js"></script>
-    <script src="/javascript/delete-post.js"></script>
-    <script src="/javascript/edit-post.js"></script>
+<script src="/javascript/delete-post.js"></script> --}}
 
 
 
@@ -103,9 +102,9 @@
   </footer>
   <footer>
         <h5>Thanks for visiting!</h5>
-    </footer> --}}
+    </footer> 
 
-{{!-- </body> --}}
+ </body> 
 {{!-- <script src="/javascript/logout.js"></script>
   <script src="/javascript/login.js"></script>
     <script src="/javascript/signup.js"></script>

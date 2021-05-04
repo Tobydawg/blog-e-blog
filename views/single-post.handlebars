@@ -1,21 +1,83 @@
-{{> post-info post }}
+{{!-- {{> post-info post }}
 
-{{#if loggedIn}}
+
 <form class="comment-form">
   <div>
     <textarea name="comment-body"></textarea>
   </div>
 
   <div>
-    {{!-- <button type="submit">add comment</button> --}}
-    
+    <button type="submit">add comment</button>
   </div>
 </form>
-{{/if}}
 
-{{> comments post.comments}}
+<div class="comments">
 
-{{#if loggedIn}}
+{{> comments}}
+{{#each comments}}
+  <section class="comment">
+    <div class="meta">
+      {{User.username}} 
+    </div>
+    <div class="text">
+      {{body}}
+    </div>
+  </section>
+{{/each}}
+
+</div> --}}
+
+{{!-- Danielles code --}}
+
+<div class="comments">
+  
+{{#if post.comments}}
+    <section class="card">
+      <div class="card-header">
+        <h3>Comments</h3>
+      </div>
+      <div class="card-body">
+        {{#each post.comments}}
+          <div>
+            <p>
+              {{body}}
+            </p>
+            <p>
+              &mdash; {{User.username}}, {{format_date createdAt}}
+            </p>
+          </div>
+        {{/each}}
+      </div>
+    </section>
+  {{/if}}
+</div>
+  
+
 <script src="/javascript/comment.js"></script>
 
-{{/if}}
+
+
+{{!-- Danielles code --}}
+
+{{!-- <div class="comments">
+{{#if post.comments}}
+    <section class="card">
+      <div class="card-header">
+        <h3>Comments</h3>
+      </div>
+      <div class="card-body">
+        {{#each post.comments}}
+          <div>
+            <p>
+              {{body}}
+            </p>
+            <p>
+              &mdash; {{User.username}}, {{format_date createdAt}}
+            </p>
+          </div>
+        {{/each}}
+      </div>
+    </section>
+  {{/if}}
+</div
+   --}}

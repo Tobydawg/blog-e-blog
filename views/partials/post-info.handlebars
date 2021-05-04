@@ -1,11 +1,11 @@
 <article class="post">
   <div class="title">
     {{!-- <a href="{{post}}" target="_blank">{{title}}</a> --}}
-    {{!-- <span>({{format_url post_url}})</span> --}}
+    {{!-- {{!-- <span>({{format_url post_url}})</span> --}}
   </div>
   <div class="meta">
-    {{format_plural "point" }} by {{user.username}} on {{format_date createdAt}}
-    |
+    {{format_plural "point" }} by {{User.username}} on {{format_date createdAt}}
+    |{{title}}
     <a href="/post/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>
   </div>
 </article>
