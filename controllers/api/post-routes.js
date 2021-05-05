@@ -85,7 +85,7 @@ router.post("/", withAuth, (req, res) => {
 });
 
 router.put("/edit/:id", withAuth, (req, res) => {
-  console.log("===========edit post by id=====================is this the route on line 87")
+  console.log("================================is this the route on line 87")
   Post.update(req.body, {
     where: {
       id: req.params.id,
@@ -93,7 +93,7 @@ router.put("/edit/:id", withAuth, (req, res) => {
   })
     .then((dbPostData) => {
       if (dbPostData > 0) {
-        req.status(200).end();
+        res.status(200).end();
       } else {
         res.status(404).end();
       }
